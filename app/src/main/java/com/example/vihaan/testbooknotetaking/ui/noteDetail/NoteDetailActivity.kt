@@ -51,7 +51,13 @@ class NoteDetailActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return super.onOptionsItemSelected(item)
+        when (item?.itemId) {
+            R.id.action_done-> {
+                onSaveBtnClicked()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 
     var imageUri: Uri? = null
