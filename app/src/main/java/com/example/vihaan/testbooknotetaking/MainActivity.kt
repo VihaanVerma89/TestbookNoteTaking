@@ -20,6 +20,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Environment
 import android.os.Environment.getExternalStorageDirectory
+import com.example.vihaan.testbooknotetaking.ui.newNotes.NewNotesActivity
 import com.yalantis.ucrop.UCrop
 import java.io.File
 import java.io.FileOutputStream
@@ -113,6 +114,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             if(data!=null)
             {
                 val uri = UCrop.getOutput(data);
+                val intent = Intent(this, NewNotesActivity::class.java)
+                intent.putExtras(data)
+                startActivity(intent)
             }
         } else if (resultCode == UCrop.RESULT_ERROR) {
             if(data!=null)
