@@ -4,7 +4,7 @@
     <item
         android:id="@+id/action_done"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_done"
+        android:icon="@drawable/ic_tick"
         app:showAsAction="always"
         android:title="done"
         />
