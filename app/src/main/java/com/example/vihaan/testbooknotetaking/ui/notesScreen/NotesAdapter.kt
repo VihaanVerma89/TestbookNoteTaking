@@ -60,6 +60,9 @@ class  NotesAdapter(val context: Context,
                 .into(holder.noteIV)
 
         holder.noteTV.text = note.text
+        holder.itemView.setOnClickListener{
+            notesLitener.onNoteClicked(note)
+        }
     }
 
     override fun getItemViewType(position: Int): Int {

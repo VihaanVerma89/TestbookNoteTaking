@@ -1,4 +1,4 @@
-package com.example.vihaan.testbooknotetaking.ui.newNotes
+package com.example.vihaan.testbooknotetaking.ui.noteDetail
 
 import android.net.Uri
 import android.os.Bundle
@@ -13,7 +13,7 @@ import com.example.vihaan.testbooknotetaking.models.Note
 import com.yalantis.ucrop.UCrop
 import kotlinx.android.synthetic.main.activity_new_notes.*
 
-class NewNotesActivity : AppCompatActivity() {
+class NoteDetailActivity : AppCompatActivity() {
     companion object {
         val KEY_NOTE = "note"
     }
@@ -40,18 +40,26 @@ class NewNotesActivity : AppCompatActivity() {
     }
 
     var imageUri: Uri? = null
+    lateinit var note: Note
     private fun initNoteView() {
         var extras = intent.extras
-        if (extras.containsKey(KEY_NOTE)) {
+        if(extras!=null)
+        {
+            if (extras.containsKey(KEY_NOTE)) {
+                note = extras.getParcelable<Note>(KEY_NOTE)
+                imageUri = Uri.parse(note.imageUri)
+                notesET.setText(note.text)
+            }
+            else{
+                imageUri = UCrop.getOutput(intent);
+            }
 
-        }
-
-        imageUri = UCrop.getOutput(intent);
-        imageUri?.let {
-            Glide.with(this)
-                    .load(it)
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .into(noteIV)
+            imageUri?.let {
+                Glide.with(this)
+                        .load(it)
+                        .transition(DrawableTransitionOptions.withCrossFade())
+                        .into(noteIV)
+            }
         }
     }
 
@@ -61,19 +69,32 @@ class NewNotesActivity : AppCompatActivity() {
     }
 
     private fun onSaveBtnClicked() {
-        var note = Note()
-        note.text = notesET.text.toString()
-        imageUri?.let {
-            note.imageUri = it.toString()
+        if(note !=null)
+        {
+            note.text = notesET.text.toString()
+            updateNote(note)
         }
-        saveNote(note)
+        else{
+            var note = Note()
+            note.text = notesET.text.toString()
+            imageUri?.let {
+                note.imageUri = it.toString()
+            }
+            saveNote(note)
+        }
         finish()
     }
 
     private lateinit var notesDao: NotesDao
     private fun saveNote(note: Note) {
         notesDao= AppDatabase.getInstance(this).notesDao()
-        notesDao.insertArticle(note)
+        notesDao.insertNote(note)
+    }
+
+    private fun updateNote(note: Note)
+    {
+        notesDao= AppDatabase.getInstance(this).notesDao()
+        notesDao.updateNote(note)
     }
 
     override fun onSupportNavigateUp(): Boolean {

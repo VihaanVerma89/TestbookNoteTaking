@@ -33,7 +33,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
-        <activity android:name=".ui.newNotes.NewNotesActivity"
+        <activity android:name=".ui.noteDetail.NoteDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             />

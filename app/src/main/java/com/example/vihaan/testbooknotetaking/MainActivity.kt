@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.content_main.*
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Environment
-import com.example.vihaan.testbooknotetaking.ui.newNotes.NewNotesActivity
+import com.example.vihaan.testbooknotetaking.ui.noteDetail.NoteDetailActivity
 import com.yalantis.ucrop.UCrop
 import java.io.File
 import java.io.FileOutputStream
@@ -123,8 +123,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun openNotesActivity(data : Intent){
         val uri = UCrop.getOutput(data);
-        val intent = Intent(this, NewNotesActivity::class.java)
-//        data.putExtra(NewNotesActivity.KEY_NOTE, )
+        val intent = Intent(this, NoteDetailActivity::class.java)
+//        data.putExtra(NoteDetailActivity.KEY_NOTE, )
         intent.putExtras(data)
         startActivity(intent)
     }

@@ -10,10 +10,10 @@ interface NotesDao {
     fun getNotes(): Flowable<MutableList<Note>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertArticle(note: Note)
+    fun insertNote(note: Note)
 
     @Update
-    fun updateArticle(note: Note)
+    fun updateNote(note: Note)
 
     @Delete
     fun deleteNote(note: Note)
