@@ -9,7 +9,7 @@ import android.support.v4.app.FragmentStatePagerAdapter
  */
 
 class PagerAdapter(fm: FragmentManager?,
-                   val fragments : List<Fragment>
+                   val fragments : MutableList<Fragment>
 ) : FragmentStatePagerAdapter(fm) {
 
 

@@ -3,6 +3,7 @@ package com.example.vihaan.testbooknotetaking
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var adapter: PagerAdapter
     private fun initViewPager()
     {
-        adapter = PagerAdapter(supportFragmentManager, arrayListOf(QuestionFragment.newInstance(Bundle())))
+        adapter = PagerAdapter(supportFragmentManager,getFragments())
         viewPager.adapter = adapter
     }
 
@@ -52,6 +53,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         } else {
             super.onBackPressed()
         }
+    }
+
+    private fun getFragments(): ArrayList<Fragment> {
+        val fragments = arrayListOf<Fragment>()
+        for(i in 1..10)
+        {
+            fragments.add(QuestionFragment.newInstance(Bundle()))
+        }
+        return fragments
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
