@@ -12,18 +12,23 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.vihaan.testbooknotetaking.ui.PagerAdapter
 import com.example.vihaan.testbooknotetaking.ui.notesScreen.NotesActivity
-import com.example.vihaan.testbooknotetaking.ui.questsions.QuestionFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Environment
+import com.example.vihaan.testbooknotetaking.models.questions.Question
 import com.example.vihaan.testbooknotetaking.ui.noteDetail.NoteDetailActivity
+import com.example.vihaan.testbooknotetaking.ui.questsions.*
+import com.google.gson.Gson
 import com.yalantis.ucrop.UCrop
 import java.io.File
 import java.io.FileOutputStream
+import java.io.IOException
 import java.util.*
+import com.google.gson.reflect.TypeToken
+import org.json.JSONArray
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -160,11 +165,41 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun getFragments(): ArrayList<Fragment> {
         val fragments = arrayListOf<Fragment>()
-        for(i in 1..10)
-        {
-            fragments.add(QuestionFragment.newInstance(Bundle()))
-        }
+
+        fragments.add(QuestionFragment1.newInstance(Bundle()))
+        fragments.add(QuestionFragment2.newInstance(Bundle()))
+        fragments.add(QuestionFragment3.newInstance(Bundle()))
+        fragments.add(QuestionFragment4.newInstance(Bundle()))
+        fragments.add(QuestionFragment5.newInstance(Bundle()))
         return fragments
+    }
+
+    private fun getJson(): String? {
+        var json: String? = null
+        try {
+            val inputStream = getAssets().open("data.json")
+            val size = inputStream.available()
+            val buffer = ByteArray(size)
+            inputStream.read(buffer)
+            inputStream.close()
+            json = String(buffer, charset("UTF-8"))
+        } catch (ex: IOException) {
+            ex.printStackTrace()
+            return null
+        }
+
+        return json
+    }
+
+    private fun getQuestions(): List<Question>? {
+        val gson = Gson()
+        var json = getJson()
+        val type = object : TypeToken<List<Question>>() { }.type
+//        val questions = gson.fromJson<List<Question>>(json, type)
+        val jsonObject = JSONArray(json)
+        json = jsonObject.toString()
+        val questions = gson.fromJson<List<Question>>(json, type)
+        return questions
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

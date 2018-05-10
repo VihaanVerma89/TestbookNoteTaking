@@ -10,25 +10,23 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/shadow_bg"
         android:layout_margin="10dp"
         >
+
+
 
 
     <TextView
         android:id="@+id/question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Question"
+        android:text="What is the legal age for a girl to get married in India?"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        android:background="@drawable/shadow_203741"
+        />
 
     <TextView
         android:id="@+id/option1TV"
@@ -40,7 +38,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:padding="10dp"
-        android:text="option 1"
+        android:background="@drawable/shadow_203741"
+        android:text="21 years"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/question" />
@@ -54,8 +53,9 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/shadow_203741"
         android:padding="10dp"
-        android:text="option 1"
+        android:text="16 years"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/option1TV" />
@@ -68,10 +68,11 @@
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:background="@drawable/shadow_203741"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:padding="10dp"
-        android:text="option 1"
+        android:text="18 Years"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/option2TV" />
@@ -84,9 +85,10 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:background="@drawable/shadow_203741"
         android:layout_marginTop="8dp"
         android:padding="10dp"
-        android:text="option 1"
+        android:text="20 Years"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/option3TV" />
@@ -98,10 +100,11 @@
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:background="@drawable/shadow_203741"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:padding="10dp"
-        android:text="solution"
+        android:text="Solution:\n\nThe legal age for a girl to get married in India is 18 years and the legal age for the boys to get\nmarried is 21 years."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/option4TV" />

@@ -8,18 +8,19 @@ import android.view.ViewGroup
 import com.example.vihaan.testbooknotetaking.R
 
 
-class QuestionFragment: Fragment(){
+class QuestionFragment4: Fragment(){
 
 
     companion object {
-        fun newInstance(bundle: Bundle) = QuestionFragment().apply { arguments = bundle }
-        val KEY_EDGE = "edge"
-        val KEY_SHORT_CODE_MEDIA="shortcode_media";
+        fun newInstance(bundle: Bundle) = QuestionFragment4().apply { arguments = bundle }
+        val KEY_POSITION ="position"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        val view = inflater.inflate(R.layout.fragment_question, container, false)
+        val position= arguments?.getInt(KEY_POSITION)
+        val layout = ""
+        val view = inflater.inflate(R.layout.fragment_question_4, container, false)
         return view
     }
 
