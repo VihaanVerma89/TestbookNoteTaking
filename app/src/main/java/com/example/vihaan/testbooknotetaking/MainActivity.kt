@@ -89,16 +89,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
 
-    private fun openScreenshot(file: File)
-    {
-
-
-        val intent = Intent()
-        intent.action = Intent.ACTION_VIEW
-        val uri = Uri.fromFile(file)
-        intent.setDataAndType(uri, "image/*")
-        startActivity(intent)
-    }
+//    private fun openScreenshot(file: File)
+//    {
+//
+//
+//        val intent = Intent()
+//        intent.action = Intent.ACTION_VIEW
+//        val uri = Uri.fromFile(file)
+//        intent.setDataAndType(uri, "image/*")
+//        startActivity(intent)
+//    }
 
     private fun openCropper(file: File){
         val sourceUri = Uri.fromFile(file)
@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val maxWidth =  500
 //                .withAspectRatio(16.0f, 9.0f)
         UCrop.of(sourceUri, destinationUri)
-//                .useSourceImageAspectRatio()
+                .useSourceImageAspectRatio()
                 .start(this);
     }
 
@@ -138,12 +138,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val now = Date()
         android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now)
         val mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg"
-        // create bitmap screen capture
-        val v1 = window.decorView.rootView
-        v1.isDrawingCacheEnabled = true
-        val bitmap = Bitmap.createBitmap(v1.drawingCache)
-        v1.isDrawingCacheEnabled = false
-
         val imageFile = File(mPath)
         return imageFile
     }
