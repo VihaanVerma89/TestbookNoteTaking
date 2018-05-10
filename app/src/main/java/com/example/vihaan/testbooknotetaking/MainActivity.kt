@@ -113,10 +113,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
             if(data!=null)
             {
-                val uri = UCrop.getOutput(data);
-                val intent = Intent(this, NewNotesActivity::class.java)
-                intent.putExtras(data)
-                startActivity(intent)
+
             }
         } else if (resultCode == UCrop.RESULT_ERROR) {
             if(data!=null)
@@ -124,6 +121,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val throwable = UCrop.getError(data);
             }
         }
+    }
+
+    private fun openNotesActivity(data : Intent){
+        val uri = UCrop.getOutput(data);
+        val intent = Intent(this, NewNotesActivity::class.java)
+//        data.putExtra(NewNotesActivity.KEY_NOTE, )
+        intent.putExtras(data)
+        startActivity(intent)
     }
 
     private fun getDestinationUri(): File? {
