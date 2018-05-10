@@ -1,0 +1,24 @@
+package com.example.vihaan.testbooknotetaking.ui
+
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentStatePagerAdapter
+
+/**
+ * Created by vihaan on 3/15/18.
+ */
+
+class PagerAdapter(fm: FragmentManager?,
+                   val fragments : List<Fragment>
+) : FragmentStatePagerAdapter(fm) {
+
+
+
+    override fun getItem(position: Int): Fragment {
+        return fragments.get(position)
+    }
+
+    override fun getCount(): Int {
+        return fragments.size
+    }
+}
