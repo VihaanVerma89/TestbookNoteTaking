@@ -7,6 +7,9 @@ import com.example.vihaan.testbooknotetaking.R
 import kotlinx.android.synthetic.main.app_bar_main.*
 
 class NewNotesActivity: AppCompatActivity(){
+    companion object {
+        val KEY_NOTE = "note"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,6 +20,7 @@ class NewNotesActivity: AppCompatActivity(){
 
     private fun init(){
         initToolbar()
+        initNoteView()
     }
 
     private fun initToolbar(){
@@ -25,6 +29,10 @@ class NewNotesActivity: AppCompatActivity(){
         setSupportActionBar(toolbar)
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
         getSupportActionBar()?.setDisplayShowHomeEnabled(true);
+    }
+
+    private fun initNoteView(){
+        intent.extras
     }
 
     override fun onSupportNavigateUp(): Boolean {
