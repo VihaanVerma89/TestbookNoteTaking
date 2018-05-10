@@ -21,4 +21,8 @@ class PagerAdapter(fm: FragmentManager?,
     override fun getCount(): Int {
         return fragments.size
     }
+
+    override fun getPageWidth(position: Int): Float {
+        return 0.9f
+    }
 }
