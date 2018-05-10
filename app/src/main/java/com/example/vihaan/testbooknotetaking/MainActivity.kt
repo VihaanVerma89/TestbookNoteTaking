@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val maxWidth =  500
 //                .withAspectRatio(16.0f, 9.0f)
         UCrop.of(sourceUri, destinationUri)
-                .useSourceImageAspectRatio()
+//                .useSourceImageAspectRatio()
                 .start(this);
     }
 
