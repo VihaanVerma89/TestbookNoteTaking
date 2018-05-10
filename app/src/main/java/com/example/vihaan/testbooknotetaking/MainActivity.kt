@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.content_main.*
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Environment
-import android.os.Environment.getExternalStorageDirectory
 import com.example.vihaan.testbooknotetaking.ui.newNotes.NewNotesActivity
 import com.yalantis.ucrop.UCrop
 import java.io.File
@@ -32,7 +31,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(toolBar)
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -41,7 +40,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         val toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+                this, drawer_layout, toolBar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
@@ -113,7 +112,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
             if(data!=null)
             {
-
+                openNotesActivity(data)
             }
         } else if (resultCode == UCrop.RESULT_ERROR) {
             if(data!=null)

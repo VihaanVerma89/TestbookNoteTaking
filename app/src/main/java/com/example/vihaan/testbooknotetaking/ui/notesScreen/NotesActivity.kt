@@ -19,8 +19,8 @@ class NotesActivity: AppCompatActivity(){
     }
 
     private fun initToolbar(){
-        setSupportActionBar(toolbar)
-        val toolbar = findViewById(R.id.toolbar) as Toolbar
+        setSupportActionBar(toolBar)
+        val toolbar = findViewById(R.id.toolBar) as Toolbar
         setSupportActionBar(toolbar)
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
         getSupportActionBar()?.setDisplayShowHomeEnabled(true);
