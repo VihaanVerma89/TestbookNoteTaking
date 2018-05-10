@@ -3,6 +3,7 @@ package com.example.vihaan.testbooknotetaking
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
@@ -15,6 +16,15 @@ import com.example.vihaan.testbooknotetaking.ui.questsions.QuestionFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import android.graphics.Bitmap
+import android.net.Uri
+import android.os.Environment
+import android.os.Environment.getExternalStorageDirectory
+import com.yalantis.ucrop.UCrop
+import java.io.File
+import java.io.FileOutputStream
+import java.util.*
+
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -23,10 +33,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-//        fab.setOnClickListener { view ->
-//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                    .setAction("Action", null).show()
-//        }
+        fab.setOnClickListener { view ->
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show()
+            takeScreenShot()
+        }
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -39,6 +50,90 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun initViews(){
         initViewPager()
+    }
+
+    private fun takeScreenShot(){
+
+        val now = Date()
+        android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now)
+
+        try {
+            // image naming and path  to include sd card  appending name you choose for file
+            val mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg"
+
+            // create bitmap screen capture
+            val v1 = window.decorView.rootView
+            v1.isDrawingCacheEnabled = true
+            val bitmap = Bitmap.createBitmap(v1.drawingCache)
+            v1.isDrawingCacheEnabled = false
+
+            val imageFile = File(mPath)
+
+            val outputStream = FileOutputStream(imageFile)
+            val quality = 100
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream)
+            outputStream.flush()
+            outputStream.close()
+
+//            openScreenshot(imageFile)
+            openCropper(imageFile)
+        } catch (e: Throwable) {
+            // Several error may come out with file handling or DOM
+            e.printStackTrace()
+        }
+
+    }
+
+    private fun openScreenshot(file: File)
+    {
+
+
+        val intent = Intent()
+        intent.action = Intent.ACTION_VIEW
+        val uri = Uri.fromFile(file)
+        intent.setDataAndType(uri, "image/*")
+        startActivity(intent)
+    }
+
+    private fun openCropper(file: File){
+        val sourceUri = Uri.fromFile(file)
+        val destinationUri = Uri.fromFile(getDestinationUri())
+        val maxHeight  = 500
+        val maxWidth =  500
+//                .withAspectRatio(16.0f, 9.0f)
+        UCrop.of(sourceUri, destinationUri)
+                .useSourceImageAspectRatio()
+                .withMaxResultSize(maxWidth, maxHeight)
+                .start(this);
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
+            if(data!=null)
+            {
+                val uri = UCrop.getOutput(data);
+            }
+        } else if (resultCode == UCrop.RESULT_ERROR) {
+            if(data!=null)
+            {
+                val throwable = UCrop.getError(data);
+            }
+        }
+    }
+
+    private fun getDestinationUri(): File? {
+        val now = Date()
+        android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now)
+        val mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg"
+        // create bitmap screen capture
+        val v1 = window.decorView.rootView
+        v1.isDrawingCacheEnabled = true
+        val bitmap = Bitmap.createBitmap(v1.drawingCache)
+        v1.isDrawingCacheEnabled = false
+
+        val imageFile = File(mPath)
+        return imageFile
     }
 
     lateinit var adapter: PagerAdapter
