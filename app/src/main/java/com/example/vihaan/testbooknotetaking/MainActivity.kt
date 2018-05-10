@@ -1,5 +1,6 @@
 package com.example.vihaan.testbooknotetaking
 
+import android.Manifest
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -18,6 +19,7 @@ import kotlinx.android.synthetic.main.content_main.*
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Environment
+import android.widget.Toast
 import com.example.vihaan.testbooknotetaking.models.questions.Question
 import com.example.vihaan.testbooknotetaking.ui.noteDetail.NoteDetailActivity
 import com.example.vihaan.testbooknotetaking.ui.questsions.*
@@ -29,8 +31,12 @@ import java.io.IOException
 import java.util.*
 import com.google.gson.reflect.TypeToken
 import org.json.JSONArray
+import permissions.dispatcher.NeedsPermission
+import permissions.dispatcher.OnPermissionDenied
+import permissions.dispatcher.RuntimePermissions
 
 
+@RuntimePermissions
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +47,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         fab.setOnClickListener { view ->
 //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                    .setAction("Action", null).show()
-            takeScreenShot()
+//            takeScreenShot()
+            takeScreenShotWithPermissionCheck()
         }
 
         val toggle = ActionBarDrawerToggle(
@@ -57,7 +64,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         initViewPager()
     }
 
-    private fun takeScreenShot(){
+    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    fun takeScreenShot(){
 
         val now = Date()
         android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now)
@@ -87,6 +95,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             e.printStackTrace()
         }
 
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        onRequestPermissionsResult(requestCode, grantResults)
+    }
+
+    @OnPermissionDenied(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    fun storagePermissionDenied(){
+        Toast.makeText(this, "Please allow storage permissions", Toast.LENGTH_LONG).show()
     }
 
 //    private fun openScreenshot(file: File)
