@@ -103,7 +103,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //                .withAspectRatio(16.0f, 9.0f)
         UCrop.of(sourceUri, destinationUri)
                 .useSourceImageAspectRatio()
-                .withMaxResultSize(maxWidth, maxHeight)
                 .start(this);
     }
 
