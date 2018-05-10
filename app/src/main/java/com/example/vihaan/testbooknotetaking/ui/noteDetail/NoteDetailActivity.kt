@@ -40,17 +40,15 @@ class NoteDetailActivity : AppCompatActivity() {
     }
 
     var imageUri: Uri? = null
-    lateinit var note: Note
+    var note: Note? = null
     private fun initNoteView() {
         var extras = intent.extras
-        if(extras!=null)
-        {
+        if (extras != null) {
             if (extras.containsKey(KEY_NOTE)) {
                 note = extras.getParcelable<Note>(KEY_NOTE)
-                imageUri = Uri.parse(note.imageUri)
-                notesET.setText(note.text)
-            }
-            else{
+                imageUri = Uri.parse(note?.imageUri)
+                notesET.setText(note?.text)
+            } else {
                 imageUri = UCrop.getOutput(intent);
             }
 
@@ -69,12 +67,10 @@ class NoteDetailActivity : AppCompatActivity() {
     }
 
     private fun onSaveBtnClicked() {
-        if(note !=null)
-        {
-            note.text = notesET.text.toString()
+        if (note != null) {
+            note?.text = notesET.text.toString()
             updateNote(note)
-        }
-        else{
+        } else {
             var note = Note()
             note.text = notesET.text.toString()
             imageUri?.let {
@@ -87,14 +83,16 @@ class NoteDetailActivity : AppCompatActivity() {
 
     private lateinit var notesDao: NotesDao
     private fun saveNote(note: Note) {
-        notesDao= AppDatabase.getInstance(this).notesDao()
+        notesDao = AppDatabase.getInstance(this).notesDao()
         notesDao.insertNote(note)
     }
 
-    private fun updateNote(note: Note)
-    {
-        notesDao= AppDatabase.getInstance(this).notesDao()
-        notesDao.updateNote(note)
+    private fun updateNote(note: Note?) {
+        if (note != null) {
+
+            notesDao = AppDatabase.getInstance(this).notesDao()
+            notesDao.updateNote(note)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

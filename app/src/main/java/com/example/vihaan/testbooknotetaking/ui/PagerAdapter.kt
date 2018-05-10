@@ -22,7 +22,7 @@ class PagerAdapter(fm: FragmentManager?,
         return fragments.size
     }
 
-    override fun getPageWidth(position: Int): Float {
-        return 0.9f
-    }
+//    override fun getPageWidth(position: Int): Float {
+//        return 0.9f
+//    }
 }
