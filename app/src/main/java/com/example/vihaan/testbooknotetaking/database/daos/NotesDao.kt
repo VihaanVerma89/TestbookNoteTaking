@@ -7,7 +7,7 @@ import io.reactivex.Flowable
 @Dao
 interface NotesDao {
     @Query("SELECT * FROM notes")
-    fun getNotes(): Flowable<List<Note>>
+    fun getNotes(): Flowable<MutableList<Note>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertArticle(note: Note)
