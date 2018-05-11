@@ -1,6 +1,6 @@
-package com.example.vihaan.testbooknotetaking.models;
+package com.example.vihaan.testbooknotetaking.models.notes;
 
-public class Tab {
+public class Tabs {
     private String name;
 
     public String getName() {

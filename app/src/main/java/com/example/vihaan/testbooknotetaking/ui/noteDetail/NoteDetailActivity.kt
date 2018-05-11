@@ -4,16 +4,14 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.vihaan.testbooknotetaking.R
 import com.example.vihaan.testbooknotetaking.database.AppDatabase
 import com.example.vihaan.testbooknotetaking.database.daos.NotesDao
-import com.example.vihaan.testbooknotetaking.models.Note
+import com.example.vihaan.testbooknotetaking.models.notes.Note
 import com.yalantis.ucrop.UCrop
 import kotlinx.android.synthetic.main.activity_new_notes.*
 

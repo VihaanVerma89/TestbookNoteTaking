@@ -1,7 +1,7 @@
 package com.example.vihaan.testbooknotetaking.database.daos
 
 import android.arch.persistence.room.*
-import com.example.vihaan.testbooknotetaking.models.Note
+import com.example.vihaan.testbooknotetaking.models.notes.Note
 import io.reactivex.Flowable
 
 @Dao

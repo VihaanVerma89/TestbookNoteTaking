@@ -1,4 +1,4 @@
-package com.example.vihaan.testbooknotetaking.models;
+package com.example.vihaan.testbooknotetaking.models.notes;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;

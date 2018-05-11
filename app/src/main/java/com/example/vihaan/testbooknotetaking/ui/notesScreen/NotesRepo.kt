@@ -3,11 +3,8 @@ package com.example.vihaan.testbooknotetaking.ui.notesScreen
 import android.content.Context
 import com.example.vihaan.testbooknotetaking.database.AppDatabase
 import com.example.vihaan.testbooknotetaking.database.daos.NotesDao
-import com.example.vihaan.testbooknotetaking.models.Note
+import com.example.vihaan.testbooknotetaking.models.notes.Note
 import io.reactivex.Flowable
-import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
 class NotesRepo private constructor(val context: Context){
 

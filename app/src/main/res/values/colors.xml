@@ -6,4 +6,5 @@
 
 
     <color name="separator">#ecebeb</color>
+    <color name="background_color">#F3F4F8</color>
 </resources>

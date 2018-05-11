@@ -10,7 +10,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.vihaan.testbooknotetaking.R
-import com.example.vihaan.testbooknotetaking.models.Note
+import com.example.vihaan.testbooknotetaking.models.notes.Note
 
 class  NotesAdapter(val context: Context,
                     val items:ArrayList<Any>,

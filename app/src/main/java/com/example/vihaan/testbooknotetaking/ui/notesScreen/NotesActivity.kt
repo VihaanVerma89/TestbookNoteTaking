@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import android.widget.LinearLayout
 import com.example.vihaan.testbooknotetaking.R
-import com.example.vihaan.testbooknotetaking.models.Note
+import com.example.vihaan.testbooknotetaking.models.notes.Note
 import com.example.vihaan.testbooknotetaking.ui.noteDetail.NoteDetailActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
