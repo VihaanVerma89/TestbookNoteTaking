@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.vihaan.testbooknotetaking.R
 import com.example.vihaan.testbooknotetaking.models.notes.Note
+import com.example.vihaan.testbooknotetaking.models.notes.Tabs
 
 class  NotesAdapter(val context: Context,
                     val items:ArrayList<Any>,
@@ -19,7 +20,7 @@ class  NotesAdapter(val context: Context,
 {
 
     val ITEM_NOTE= 0
-    var ITEM_TAB = 1
+    var ITEM_TABS = 1
 
     interface NotesLitener{
         fun onNoteClicked(note: Note)
@@ -37,6 +38,11 @@ class  NotesAdapter(val context: Context,
             ITEM_NOTE ->{
                 view = inflater.inflate(R.layout.list_item_note, parent, false)
                viewHolder = NoteViewHolder(view)
+            }
+
+            ITEM_TABS->{
+                view = inflater.inflate(R.layout.list_item_tabs, parent, false)
+                viewHolder = TabsViewHolder(view)
             }
         }
         return viewHolder!!
@@ -68,8 +74,11 @@ class  NotesAdapter(val context: Context,
 
     override fun getItemViewType(position: Int): Int {
         super.getItemViewType(position)
-//        val = items.get(position)
-//        if()
+        val item = items.get(position)
+        if(item is Tabs)
+        {
+            return ITEM_TABS
+        }
         return ITEM_NOTE
     }
 
@@ -86,4 +95,8 @@ class  NotesAdapter(val context: Context,
         var noteTV = itemView.findViewById<TextView>(R.id.noteTV)
     }
 
+    class TabsViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
+    {
+
+    }
 }

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="95dp"
+                android:layout_height="80dp"
+                android:background="@drawable/bg_tab_doubts"
+                tools:layout_editor_absoluteX="5dp"
+                tools:layout_editor_absoluteY="41dp"
+                android:layout_margin="10dp"
+                >
+
+
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="8dp"
+                    android:alpha="0.5"
+                    android:background="@drawable/bg_line"
+                    app:layout_constraintBottom_toTopOf="@+id/doubtTV"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/doubtTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="28dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Doubts"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/doubtCountTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="4dp"
+                    android:alpha="0.67"
+                    android:text="00"
+                    android:textColor="@android:color/white"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/doubtTV"
+                    app:layout_constraintVertical_bias="1.0" />
+            </android.support.constraint.ConstraintLayout>
+
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="95dp"
+                android:layout_height="80dp"
+                android:background="@drawable/bg_tab_tricks"
+                tools:layout_editor_absoluteX="111dp"
+                tools:layout_editor_absoluteY="41dp"
+                android:layout_margin="10dp"
+                >
+
+                <!--<ProgressBar-->
+                <!--style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="10dp"-->
+                <!--android:layout_marginBottom="8dp"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_marginStart="10dp"-->
+                <!--android:layout_marginTop="8dp"-->
+                <!--app:layout_constraintBottom_toTopOf="@+id/doubtTV"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--android:indeterminateTintMode="src_atop"-->
+                <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="8dp"
+                    android:alpha="0.5"
+                    android:background="@drawable/bg_line"
+                    app:layout_constraintBottom_toTopOf="@+id/tricksTV"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tricksTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="28dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Tricks"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/tricksCountTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="4dp"
+                    android:alpha="0.67"
+                    android:text="00"
+                    android:textColor="@android:color/white"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tricksTV"
+                    app:layout_constraintVertical_bias="1.0" />
+            </android.support.constraint.ConstraintLayout>
+
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="95dp"
+                android:layout_height="80dp"
+                android:background="@drawable/bg_tab_concepts"
+                tools:layout_editor_absoluteX="223dp"
+                tools:layout_editor_absoluteY="41dp"
+                android:layout_margin="10dp"
+                >
+
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="8dp"
+                    android:alpha="0.5"
+                    android:background="@drawable/bg_line"
+                    app:layout_constraintBottom_toTopOf="@+id/conceptsTV"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/conceptsTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="28dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Concepts"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/conceptCountTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="4dp"
+                    android:alpha="0.67"
+                    android:text="00"
+                    android:textColor="@android:color/white"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/conceptsTV"
+                    app:layout_constraintVertical_bias="1.0" />
+            </android.support.constraint.ConstraintLayout>
+
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="95dp"
+                android:layout_height="80dp"
+                android:background="@drawable/bg_tab_more"
+                tools:layout_editor_absoluteX="334dp"
+                tools:layout_editor_absoluteY="41dp"
+                android:layout_margin="10dp"
+                >
+
+
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="8dp"
+                    android:alpha="0.5"
+                    android:background="@drawable/bg_line"
+                    app:layout_constraintBottom_toTopOf="@+id/moreTV"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/moreTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="28dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text="More"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/moreCountTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="4dp"
+                    android:alpha="0.67"
+                    android:text="00"
+                    android:textColor="@android:color/white"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/moreTV"
+                    app:layout_constraintVertical_bias="1.0" />
+            </android.support.constraint.ConstraintLayout>
+
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+
+</android.support.constraint.ConstraintLayout>
