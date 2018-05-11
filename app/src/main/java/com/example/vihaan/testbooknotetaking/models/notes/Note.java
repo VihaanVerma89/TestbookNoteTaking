@@ -11,6 +11,7 @@ public class Note implements Parcelable {
     private int id;
     private int doubt, tricks, concepts;
     private String text, imageUri;
+    private Long timeStamp;
 
     public int getId() {
         return id;
@@ -60,8 +61,17 @@ public class Note implements Parcelable {
         this.concepts = concepts;
     }
 
+    public Long getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(Long timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
     public Note() {
     }
+
 
     @Override
     public int describeContents() {
@@ -76,6 +86,7 @@ public class Note implements Parcelable {
         dest.writeInt(this.concepts);
         dest.writeString(this.text);
         dest.writeString(this.imageUri);
+        dest.writeValue(this.timeStamp);
     }
 
     protected Note(Parcel in) {
@@ -85,6 +96,7 @@ public class Note implements Parcelable {
         this.concepts = in.readInt();
         this.text = in.readString();
         this.imageUri = in.readString();
+        this.timeStamp = (Long) in.readValue(Long.class.getClassLoader());
     }
 
     public static final Creator<Note> CREATOR = new Creator<Note>() {

@@ -202,6 +202,7 @@ class NoteDetailActivity : AppCompatActivity() {
 
     private lateinit var notesDao: NotesDao
     private fun saveNote(note: Note?) {
+        note?.timeStamp = System.currentTimeMillis()
         note?.let {
             notesDao = AppDatabase.getInstance(this).notesDao()
             notesDao.insertNote(note)
@@ -210,7 +211,7 @@ class NoteDetailActivity : AppCompatActivity() {
 
     private fun updateNote(note: Note?) {
         if (note != null) {
-
+            note.timeStamp = System.currentTimeMillis()
             notesDao = AppDatabase.getInstance(this).notesDao()
             notesDao.updateNote(note)
         }

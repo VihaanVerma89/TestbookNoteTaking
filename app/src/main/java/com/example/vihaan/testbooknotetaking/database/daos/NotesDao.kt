@@ -6,7 +6,7 @@ import io.reactivex.Flowable
 
 @Dao
 interface NotesDao {
-    @Query("SELECT * FROM notes")
+    @Query("SELECT * FROM notes order by timeStamp desc")
     fun getNotes(): Flowable<MutableList<Note>>
 
     @Query("SELECT count(*) FROM notes where doubt=1")

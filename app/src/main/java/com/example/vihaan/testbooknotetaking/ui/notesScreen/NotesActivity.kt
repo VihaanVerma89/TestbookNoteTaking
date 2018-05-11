@@ -1,11 +1,13 @@
 package com.example.vihaan.testbooknotetaking.ui.notesScreen
 
+import android.Manifest
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import android.widget.LinearLayout
+import android.widget.Toast
 import com.example.vihaan.testbooknotetaking.R
 import com.example.vihaan.testbooknotetaking.models.notes.Note
 import com.example.vihaan.testbooknotetaking.models.notes.Tabs
@@ -13,19 +15,24 @@ import com.example.vihaan.testbooknotetaking.ui.noteDetail.NoteDetailActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_notes.*
+import permissions.dispatcher.NeedsPermission
+import permissions.dispatcher.OnPermissionDenied
+import permissions.dispatcher.RuntimePermissions
 
+@RuntimePermissions()
 class NotesActivity: AppCompatActivity(), NotesAdapter.NotesLitener{
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notes)
         initViews()
+        loadNotesWithPermissionCheck()
     }
 
     private fun initViews(){
         initToolbar()
         initRecyclerView()
-        loadNotes()
     }
 
     private fun initToolbar(){
@@ -44,7 +51,8 @@ class NotesActivity: AppCompatActivity(), NotesAdapter.NotesLitener{
         notesRV.adapter = adapter
     }
 
-    private fun loadNotes(){
+    @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+     fun loadNotes(){
         NotesRepo.getInstance(this).getNotes()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -63,6 +71,12 @@ class NotesActivity: AppCompatActivity(), NotesAdapter.NotesLitener{
                 })
     }
 
+
+
+    @OnPermissionDenied(Manifest.permission.READ_EXTERNAL_STORAGE)
+    fun loadImagesDenied(){
+        Toast.makeText(this, "Please allow access to read files", Toast.LENGTH_LONG).show()
+    }
 
     private fun showNotes(notes: List<Note>)
     {
