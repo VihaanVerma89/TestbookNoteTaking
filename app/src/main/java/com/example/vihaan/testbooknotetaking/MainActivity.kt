@@ -17,8 +17,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.os.Build
 import android.os.Environment
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Toast
 import com.example.vihaan.testbooknotetaking.models.questions.Question
 import com.example.vihaan.testbooknotetaking.ui.noteDetail.NoteDetailActivity
@@ -40,7 +44,16 @@ import permissions.dispatcher.RuntimePermissions
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            val window = getWindow();
+//            val background = getResources().getDrawable(R.drawable.toolbar_gradient);
+//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//            window.setStatusBarColor(getResources().getColor(android.R.color.transparent));
+//            window.setNavigationBarColor(getResources().getColor(android.R.color.transparent));
+//            window.setBackgroundDrawable(background);
+//        }
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolBar)
 
