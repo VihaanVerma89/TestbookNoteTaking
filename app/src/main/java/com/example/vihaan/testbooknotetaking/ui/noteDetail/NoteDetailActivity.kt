@@ -1,7 +1,9 @@
 package com.example.vihaan.testbooknotetaking.ui.noteDetail
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
@@ -30,7 +32,13 @@ class NoteDetailActivity : AppCompatActivity() {
 
     private fun init() {
         initToolbar()
-        initNoteView()
+        if(shareIntent())
+        {
+
+        }
+        else{
+            initNoteView()
+        }
         initActions()
     }
 
@@ -59,12 +67,51 @@ class NoteDetailActivity : AppCompatActivity() {
         }
     }
 
+    private fun shareIntent(): Boolean{
+        val action = intent.action
+        val type = intent.type
+        var sharedIntent: Boolean = false
+        if (Intent.ACTION_SEND.equals(action) && type != null) {
+            if ("text/plain".equals(type)) {
+                sharedIntent = true
+                handleSendText(intent); // Handle text being sent
+            } else if (type.startsWith("image/")) {
+                sharedIntent = true
+                handleSendImage(intent); // Handle single image being sent
+            }
+        }
+        return sharedIntent
+    }
+
+    fun handleSendText(intent: Intent) {
+        val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
+        if (sharedText != null) {
+            // Update UI to reflect text being shared
+        }
+    }
+
+    fun handleSendImage(intent: Intent) {
+        val imageUri = intent.getParcelableExtra<Parcelable>(Intent.EXTRA_STREAM) as Uri
+        if (imageUri != null) {
+            // Update UI to reflect image being shared
+            note = Note()
+            note?.imageUri = imageUri.toString()
+            imageUri?.let {
+                Glide.with(this)
+                        .load(it)
+                        .transition(DrawableTransitionOptions.withCrossFade())
+                        .into(noteIV)
+            }
+        }
+    }
+
     var imageUri: Uri? = null
     var note: Note? = null
     private fun initNoteView() {
         var extras = intent.extras
         if (extras != null) {
             if (extras.containsKey(KEY_NOTE)) {
+                //existing app note
                 note = extras.getParcelable<Note>(KEY_NOTE)
                 if (note?.doubt == 1) {
                     doubtTagTV.background = ContextCompat.getDrawable(this, R.drawable.bg_grey_selected)
@@ -78,7 +125,9 @@ class NoteDetailActivity : AppCompatActivity() {
                 }
                 imageUri = Uri.parse(note?.imageUri)
                 notesET.setText(note?.text)
-            } else {
+            }
+            else{
+                //new note
                 note = Note()
                 imageUri = UCrop.getOutput(intent);
                 note?.imageUri = imageUri.toString()
