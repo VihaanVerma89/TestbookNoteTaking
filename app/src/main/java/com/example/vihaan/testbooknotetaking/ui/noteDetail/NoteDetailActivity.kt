@@ -127,7 +127,9 @@ class NoteDetailActivity : AppCompatActivity() {
 
                     conceptsTagTV.background = ContextCompat.getDrawable(this, R.drawable.bg_grey_selected)
                 }
-                imageUri = Uri.parse(note?.imageUri)
+                note?.imageUri?.let {
+                    imageUri = Uri.parse(it)
+                }
                 notesET.setText(note?.text)
             }
             else{

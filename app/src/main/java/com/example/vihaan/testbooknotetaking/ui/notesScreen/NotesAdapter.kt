@@ -13,6 +13,9 @@ import com.example.vihaan.testbooknotetaking.R
 import com.example.vihaan.testbooknotetaking.database.AppDatabase
 import com.example.vihaan.testbooknotetaking.models.notes.Note
 import com.example.vihaan.testbooknotetaking.models.notes.Tabs
+import com.bumptech.glide.request.RequestOptions
+
+
 
 class NotesAdapter(val context: Context,
                    val items: ArrayList<Any>,
@@ -71,8 +74,13 @@ class NotesAdapter(val context: Context,
     fun bindNoteViewHolder(holder: NoteViewHolder, position: Int) {
         holder as NoteViewHolder
         val note = this.items.get(position) as Note
+
+        val requestOptions = RequestOptions()
+        requestOptions.placeholder(R.drawable.placeholder)
+        requestOptions.error(R.drawable.placeholder)
         Glide.with(context)
                 .load(note.imageUri)
+                .apply(requestOptions)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(holder.noteIV)
 
