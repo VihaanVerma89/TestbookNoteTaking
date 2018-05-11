@@ -64,10 +64,11 @@
                         android:layout_marginEnd="8dp"
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
+                        android:gravity="top"
                         android:layout_marginStart="8dp"
                         android:background="@android:color/transparent"
                         android:hint="Type notes here"
-                        android:minHeight="200dp"
+                        android:minHeight="600dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/noteIV" />
@@ -111,10 +112,11 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/doubtTagTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:background="@drawable/bg_darkgrey_rounded_corner_4dp"
+                        android:background="@drawable/bg_grey"
                         android:paddingBottom="10dp"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
@@ -122,10 +124,11 @@
                         android:text="Doubts" />
 
                     <TextView
+                        android:id="@+id/tricksTagTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:background="@drawable/bg_darkgrey_rounded_corner_4dp"
+                        android:background="@drawable/bg_grey"
                         android:paddingBottom="10dp"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
@@ -133,10 +136,11 @@
                         android:text="Tricks" />
 
                     <TextView
+                        android:id="@+id/conceptsTagTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:background="@drawable/bg_darkgrey_rounded_corner_4dp"
+                        android:background="@drawable/bg_grey"
                         android:paddingBottom="10dp"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"

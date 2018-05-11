@@ -63,6 +63,7 @@ class NotesActivity: AppCompatActivity(), NotesAdapter.NotesLitener{
                 })
     }
 
+
     private fun showNotes(notes: List<Note>)
     {
         items.clear()

@@ -2,6 +2,7 @@ package com.example.vihaan.testbooknotetaking.ui.noteDetail
 
 import android.net.Uri
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
@@ -50,7 +51,7 @@ class NoteDetailActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
-            R.id.action_done-> {
+            R.id.action_done -> {
                 onSaveBtnClicked()
                 return true
             }
@@ -65,10 +66,22 @@ class NoteDetailActivity : AppCompatActivity() {
         if (extras != null) {
             if (extras.containsKey(KEY_NOTE)) {
                 note = extras.getParcelable<Note>(KEY_NOTE)
+                if (note?.doubt == 1) {
+                    doubtTagTV.background = ContextCompat.getDrawable(this, R.drawable.bg_grey_selected)
+                }
+                if (note?.tricks == 1) {
+                    tricksTagTV.background = ContextCompat.getDrawable(this, R.drawable.bg_grey_selected)
+                }
+                if (note?.concepts == 1) {
+
+                    conceptsTagTV.background = ContextCompat.getDrawable(this, R.drawable.bg_grey_selected)
+                }
                 imageUri = Uri.parse(note?.imageUri)
                 notesET.setText(note?.text)
             } else {
+                note = Note()
                 imageUri = UCrop.getOutput(intent);
+                note?.imageUri = imageUri.toString()
             }
 
             imageUri?.let {
@@ -78,6 +91,41 @@ class NoteDetailActivity : AppCompatActivity() {
                         .into(noteIV)
             }
         }
+
+        doubtTagTV.setOnClickListener {
+            note?.let {
+                if (it.doubt == 1) {
+                    it.doubt = 0
+                    doubtTagTV.background = ContextCompat.getDrawable(this, R.drawable.bg_grey)
+                } else {
+                    it.doubt = 1
+                    doubtTagTV.background = ContextCompat.getDrawable(this, R.drawable.bg_grey_selected)
+                }
+            }
+        }
+        tricksTagTV.setOnClickListener {
+            note?.let {
+                if (it.tricks == 1) {
+                    it.tricks = 0
+                    tricksTagTV.background = ContextCompat.getDrawable(this, R.drawable.bg_grey)
+                } else {
+                    it.tricks = 1
+                    tricksTagTV.background = ContextCompat.getDrawable(this, R.drawable.bg_grey_selected)
+                }
+            }
+        }
+        conceptsTagTV.setOnClickListener {
+            note?.let {
+                if (it.concepts == 1) {
+                    it.concepts = 0
+                    conceptsTagTV.background = ContextCompat.getDrawable(this, R.drawable.bg_grey)
+                } else {
+                    it.concepts = 1
+                    conceptsTagTV.background = ContextCompat.getDrawable(this, R.drawable.bg_grey_selected)
+                }
+            }
+        }
+        plusIV.setOnClickListener { }
     }
 
     private fun initActions() {
@@ -86,24 +134,26 @@ class NoteDetailActivity : AppCompatActivity() {
     }
 
     private fun onSaveBtnClicked() {
-        if (note != null) {
+        if (note != null && note?.id!=0) {
             note?.text = notesET.text.toString()
             updateNote(note)
         } else {
-            var note = Note()
-            note.text = notesET.text.toString()
+//            var note = Note()
+            note?.text = notesET.text.toString()
             imageUri?.let {
-                note.imageUri = it.toString()
+                note?.imageUri = it.toString()
             }
-            saveNote(note)
+            saveNote(this.note)
         }
         finish()
     }
 
     private lateinit var notesDao: NotesDao
-    private fun saveNote(note: Note) {
-        notesDao = AppDatabase.getInstance(this).notesDao()
-        notesDao.insertNote(note)
+    private fun saveNote(note: Note?) {
+        note?.let {
+            notesDao = AppDatabase.getInstance(this).notesDao()
+            notesDao.insertNote(note)
+        }
     }
 
     private fun updateNote(note: Note?) {

@@ -9,6 +9,7 @@ import android.os.Parcelable;
 public class Note implements Parcelable {
     @PrimaryKey(autoGenerate = true)
     private int id;
+    private int doubt, tricks, concepts;
     private String text, imageUri;
 
     public int getId() {
@@ -35,6 +36,33 @@ public class Note implements Parcelable {
         this.imageUri = imageUri;
     }
 
+    public int getDoubt() {
+        return doubt;
+    }
+
+    public void setDoubt(int doubt) {
+        this.doubt = doubt;
+    }
+
+    public int getTricks() {
+        return tricks;
+    }
+
+    public void setTricks(int tricks) {
+        this.tricks = tricks;
+    }
+
+    public int getConcepts() {
+        return concepts;
+    }
+
+    public void setConcepts(int concepts) {
+        this.concepts = concepts;
+    }
+
+    public Note() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -43,20 +71,23 @@ public class Note implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
+        dest.writeInt(this.doubt);
+        dest.writeInt(this.tricks);
+        dest.writeInt(this.concepts);
         dest.writeString(this.text);
         dest.writeString(this.imageUri);
     }
 
-    public Note() {
-    }
-
     protected Note(Parcel in) {
         this.id = in.readInt();
+        this.doubt = in.readInt();
+        this.tricks = in.readInt();
+        this.concepts = in.readInt();
         this.text = in.readString();
         this.imageUri = in.readString();
     }
 
-    public static final Parcelable.Creator<Note> CREATOR = new Parcelable.Creator<Note>() {
+    public static final Creator<Note> CREATOR = new Creator<Note>() {
         @Override
         public Note createFromParcel(Parcel source) {
             return new Note(source);
