@@ -25,6 +25,10 @@ class NotesAdapter(val context: Context,
     val ITEM_NOTE = 0
     var ITEM_TABS = 1
 
+    val tags = arrayListOf<String>("SSC", "General Awareness", "RBI", "History", "Post Independence History", "Economy", "Wave",
+            "Physics", "Partial Speed", "Speed Time and Distance", "Time and Work", "Pipe and Cistern", "Quantitative Aptitude",
+    "Average", "Blood relations", "Logical Reasoning", "Problems on dice", "Venn diagram")
+
     interface NotesLitener {
         fun onNoteClicked(note: Note)
     }
@@ -84,7 +88,10 @@ class NotesAdapter(val context: Context,
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(holder.noteIV)
 
+        val value = position % tags.size
+        val tag = tags.get(value)
         holder.noteTV.text = note.text
+        holder.tagsTV.setText("\u2022 $tag")
         holder.itemView.setOnClickListener {
             notesLitener.onNoteClicked(note)
         }
@@ -107,6 +114,7 @@ class NotesAdapter(val context: Context,
     class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var noteIV = itemView.findViewById<ImageView>(R.id.noteIV)
         var noteTV = itemView.findViewById<TextView>(R.id.noteTV)
+        var tagsTV= itemView.findViewById<TextView>(R.id.tagsTV)
     }
 
     class TabsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -70,6 +70,7 @@ public class Note implements Parcelable {
     }
 
     public Note() {
+        int value = 2 %10;
     }
 
 
