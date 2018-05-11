@@ -9,6 +9,15 @@ interface NotesDao {
     @Query("SELECT * FROM notes")
     fun getNotes(): Flowable<MutableList<Note>>
 
+    @Query("SELECT count(*) FROM notes where doubt=1")
+    fun getDoubtCount(): Int
+
+    @Query("SELECT count(*) FROM notes where tricks=1")
+    fun getTricksCount(): Int
+
+    @Query("SELECT count(*) FROM notes where concepts=1")
+    fun getConceptCount(): Int
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertNote(note: Note)
 
