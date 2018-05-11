@@ -10,9 +10,9 @@ import com.example.vihaan.testbooknotetaking.R
 
 class QuestionFragment1: Fragment(){
 
-
     companion object {
         fun newInstance(bundle: Bundle) = QuestionFragment1().apply { arguments = bundle }
+        var tags = arrayListOf<String>("SSC", "Logical Reasoning","Non verbal reasoning","Cubes and dice", "Problems on dice")
         val KEY_POSITION ="position"
     }
 

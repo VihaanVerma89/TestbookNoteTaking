@@ -13,6 +13,7 @@ class QuestionFragment4: Fragment(){
 
     companion object {
         fun newInstance(bundle: Bundle) = QuestionFragment4().apply { arguments = bundle }
+        var tags = arrayListOf<String>("SSC", "General Awareness","General Knowledge","Polity")
         val KEY_POSITION ="position"
     }
 

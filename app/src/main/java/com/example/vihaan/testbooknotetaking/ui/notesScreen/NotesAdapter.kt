@@ -19,6 +19,7 @@ class  NotesAdapter(val context: Context,
 {
 
     val ITEM_NOTE= 0
+    var ITEM_TAB = 1
 
     interface NotesLitener{
         fun onNoteClicked(note: Note)
@@ -67,6 +68,8 @@ class  NotesAdapter(val context: Context,
 
     override fun getItemViewType(position: Int): Int {
         super.getItemViewType(position)
+//        val = items.get(position)
+//        if()
         return ITEM_NOTE
     }
 

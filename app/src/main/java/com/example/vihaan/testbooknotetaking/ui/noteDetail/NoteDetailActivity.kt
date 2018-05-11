@@ -83,8 +83,8 @@ class NoteDetailActivity : AppCompatActivity() {
     }
 
     private fun initActions() {
-        saveBtn.setOnClickListener { onSaveBtnClicked() }
-        cancelBtn.setOnClickListener { onBackPressed() }
+//        saveBtn.setOnClickListener { onSaveBtnClicked() }
+//        cancelBtn.setOnClickListener { onBackPressed() }
     }
 
     private fun onSaveBtnClicked() {
