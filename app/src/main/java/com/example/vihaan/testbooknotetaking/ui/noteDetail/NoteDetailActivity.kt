@@ -87,6 +87,9 @@ class NoteDetailActivity : AppCompatActivity() {
         val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
         if (sharedText != null) {
             // Update UI to reflect text being shared
+            note = Note()
+            note?.text = sharedText
+            notesET.setText(note?.text)
         }
     }
 
