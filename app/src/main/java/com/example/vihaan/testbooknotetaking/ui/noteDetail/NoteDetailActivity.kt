@@ -39,6 +39,7 @@ class NoteDetailActivity : AppCompatActivity() {
         else{
             initNoteView()
         }
+        initTagListener()
         initActions()
     }
 
@@ -144,6 +145,11 @@ class NoteDetailActivity : AppCompatActivity() {
             }
         }
 
+        plusIV.setOnClickListener { }
+    }
+
+    private fun initTagListener(){
+
         doubtTagTV.setOnClickListener {
             note?.let {
                 if (it.doubt == 1) {
@@ -177,7 +183,6 @@ class NoteDetailActivity : AppCompatActivity() {
                 }
             }
         }
-        plusIV.setOnClickListener { }
     }
 
     private fun initActions() {

@@ -51,6 +51,10 @@ class NotesActivity: AppCompatActivity(), NotesAdapter.NotesLitener{
         notesRV.adapter = adapter
     }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        onRequestPermissionsResult(requestCode, grantResults)
+    }
     @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
      fun loadNotes(){
         NotesRepo.getInstance(this).getNotes()
